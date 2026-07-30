@@ -8,6 +8,305 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+
+<style id="mobile-hotfix">
+/* Mobile rendering hotfix: prevents the fixed/sticky header from clipping the hero. */
+:root {
+  --mobile-nav-height: 64px;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-padding-top: calc(var(--mobile-nav-height) + env(safe-area-inset-top));
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+
+.container,
+.hero-grid,
+.feature-layout,
+.trust-layout,
+.mobile-layout,
+.split-block,
+.demo-grid,
+.problem-grid,
+.fact-strip {
+  min-width: 0;
+}
+
+.nav {
+  top: 0;
+  z-index: 1000;
+  padding-top: env(safe-area-inset-top);
+}
+
+.nav > .container {
+  min-height: var(--mobile-nav-height);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --mobile-nav-height: 60px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .nav {
+    position: sticky;
+    width: 100%;
+    background: rgba(247, 253, 255, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .nav > .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: var(--mobile-nav-height);
+  }
+
+  .nav-logo {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    flex: 0 1 auto;
+    min-width: 0;
+    font-size: 18px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.is-open {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px 20px 18px;
+    background: rgba(247, 253, 255, 0.98);
+    border-top: 1px solid rgba(11, 33, 49, 0.08);
+    box-shadow: 0 16px 24px rgba(11, 33, 49, 0.10);
+  }
+
+  .nav-links.is-open a {
+    display: block;
+    padding: 12px 4px;
+  }
+
+  .nav-burger {
+    position: relative;
+    z-index: 2;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    padding: 9px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    border: 0;
+    background: transparent;
+  }
+
+  .nav-burger span {
+    width: 100%;
+    height: 3px;
+    border-radius: 999px;
+    transform-origin: center;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 46px;
+    padding-bottom: 100px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 42px;
+    align-items: start;
+  }
+
+  .hero-grid > * {
+    min-width: 0;
+  }
+
+  .hero h1 {
+    margin-top: 24px;
+    font-size: clamp(36px, 10.5vw, 54px);
+    line-height: 1.16;
+    letter-spacing: -0.055em;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
+  .hero .lede {
+    font-size: 17px;
+    line-height: 1.85;
+    word-break: keep-all;
+  }
+
+  .hero-kicker {
+    max-width: 100%;
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  .hero-actions,
+  .btn-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hero-actions .btn,
+  .btn-group .btn {
+    width: 100%;
+    min-height: 52px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .hero-stat b {
+    font-size: clamp(25px, 7vw, 34px);
+  }
+
+  .hero-stat span {
+    font-size: 13px;
+    line-height: 1.45;
+    word-break: keep-all;
+  }
+
+  .gauge-card {
+    width: 100%;
+    margin: 0;
+    padding: 24px 20px 18px;
+    border-radius: 28px;
+  }
+
+  .gauge-top,
+  .gauge-foot {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .gauge-dial {
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .gauge-meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .section {
+    padding-top: 76px;
+    padding-bottom: 76px;
+  }
+
+  .problem-grid,
+  .demo-grid,
+  .feature-layout,
+  .trust-layout,
+  .mobile-layout,
+  .split-block {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fact-strip {
+    flex-direction: column;
+  }
+
+  .phone-stack {
+    width: min(100%, 420px);
+    margin-inline: auto;
+  }
+
+  .ticker-track {
+    will-change: transform;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero {
+    padding-top: 34px;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 10vw, 43px);
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .hero-stat {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .hero-stat span {
+    font-size: 14px;
+  }
+
+  .gauge-meta {
+    gap: 6px;
+  }
+
+  .gauge-meta b {
+    font-size: 17px;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -330,5 +629,29 @@
 </footer>
 
 <script src="assets/script.js"></script>
+
+<script>
+(() => {
+  const burger = document.querySelector('.nav-burger');
+  const links = document.querySelector('.nav-links');
+  if (!burger || !links) return;
+
+  burger.setAttribute('aria-expanded', 'false');
+  burger.addEventListener('click', () => {
+    const open = links.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+  });
+
+  links.addEventListener('click', (event) => {
+    if (event.target.closest('a')) {
+      links.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', '메뉴 열기');
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
