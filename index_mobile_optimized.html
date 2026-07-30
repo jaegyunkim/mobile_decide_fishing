@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오늘의낚시 — 숫자는 우리가 보고, 출조 결정만 알려드립니다</title>
+<meta name="description" content="공공 해양·기상 데이터를 자동 수집·분석해 포인트별 출조 적합도를 점수와 근거로 즉답하는 AI 출조판단 에이전트, 오늘의낚시.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+<style id="mobile-hotfix">
+/* Mobile rendering hotfix: prevents the fixed/sticky header from clipping the hero. */
+:root {
+  --mobile-nav-height: 64px;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-padding-top: calc(var(--mobile-nav-height) + env(safe-area-inset-top));
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+
+.container,
+.hero-grid,
+.feature-layout,
+.trust-layout,
+.mobile-layout,
+.split-block,
+.demo-grid,
+.problem-grid,
+.fact-strip {
+  min-width: 0;
+}
+
+.nav {
+  top: 0;
+  z-index: 1000;
+  padding-top: env(safe-area-inset-top);
+}
+
+.nav > .container {
+  min-height: var(--mobile-nav-height);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --mobile-nav-height: 60px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .nav {
+    position: sticky;
+    width: 100%;
+    background: rgba(247, 253, 255, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .nav > .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: var(--mobile-nav-height);
+  }
+
+  .nav-logo {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    flex: 0 1 auto;
+    min-width: 0;
+    font-size: 18px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.is-open {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px 20px 18px;
+    background: rgba(247, 253, 255, 0.98);
+    border-top: 1px solid rgba(11, 33, 49, 0.08);
+    box-shadow: 0 16px 24px rgba(11, 33, 49, 0.10);
+  }
+
+  .nav-links.is-open a {
+    display: block;
+    padding: 12px 4px;
+  }
+
+  .nav-burger {
+    position: relative;
+    z-index: 2;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    padding: 9px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    border: 0;
+    background: transparent;
+  }
+
+  .nav-burger span {
+    width: 100%;
+    height: 3px;
+    border-radius: 999px;
+    transform-origin: center;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 46px;
+    padding-bottom: 100px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 42px;
+    align-items: start;
+  }
+
+  .hero-grid > * {
+    min-width: 0;
+  }
+
+  .hero h1 {
+    margin-top: 24px;
+    font-size: clamp(36px, 10.5vw, 54px);
+    line-height: 1.16;
+    letter-spacing: -0.055em;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
+  .hero .lede {
+    font-size: 17px;
+    line-height: 1.85;
+    word-break: keep-all;
+  }
+
+  .hero-kicker {
+    max-width: 100%;
+    font-size: 14px;
+    white-space: normal;
+  }
+
+  .hero-actions,
+  .btn-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hero-actions .btn,
+  .btn-group .btn {
+    width: 100%;
+    min-height: 52px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .hero-stat b {
+    font-size: clamp(25px, 7vw, 34px);
+  }
+
+  .hero-stat span {
+    font-size: 13px;
+    line-height: 1.45;
+    word-break: keep-all;
+  }
+
+  .gauge-card {
+    width: 100%;
+    margin: 0;
+    padding: 24px 20px 18px;
+    border-radius: 28px;
+  }
+
+  .gauge-top,
+  .gauge-foot {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .gauge-dial {
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .gauge-meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .section {
+    padding-top: 76px;
+    padding-bottom: 76px;
+  }
+
+  .problem-grid,
+  .demo-grid,
+  .feature-layout,
+  .trust-layout,
+  .mobile-layout,
+  .split-block {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fact-strip {
+    flex-direction: column;
+  }
+
+  .phone-stack {
+    width: min(100%, 420px);
+    margin-inline: auto;
+  }
+
+  .ticker-track {
+    will-change: transform;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero {
+    padding-top: 34px;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 10vw, 43px);
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .hero-stat {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .hero-stat span {
+    font-size: 14px;
+  }
+
+  .gauge-meta {
+    gap: 6px;
+  }
+
+  .gauge-meta b {
+    font-size: 17px;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><span class="dot"></span>오늘의낚시</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">메인</a></li>
+      <li><a href="service.html">서비스</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="dark-section hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow hero-kicker">공공데이터 기반 AI 출조 판단</div>
+      <h1>숫자는 우리가 보고,<br><span class="accent">출조 결정</span>만 알려드립니다.</h1>
+      <p class="lede">기상청·해양조사원·공공데이터포털에 흩어진 관측값을 하나의 판정으로 번역합니다. 조황은 감이 아니라, 검증 가능한 근거로 말합니다.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn btn-primary">베타 신청하기</a>
+        <a href="service.html" class="btn btn-ghost">실제 판정 화면 보기</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>100+</b><span>부산 검증 포인트</span></div>
+        <div class="hero-stat"><b>5개</b><span>공공데이터 자동 수집 파이프라인</span></div>
+        <div class="hero-stat"><b>3단</b><span>환각 차단 판정 구조</span></div>
+      </div>
+    </div>
+
+    <div class="gauge-card" data-gauge aria-label="실시간 출조판정 예시">
+      <div class="gauge-top">
+        <div class="gauge-point">지금 판정 중인 포인트<b>감천항 · 연안 캐스팅</b></div>
+        <div class="gauge-live"><i></i>LIVE 판정</div>
+      </div>
+      <div class="gauge-dial">
+        <svg viewBox="0 0 200 116" width="100%" style="max-width:320px;overflow:visible;">
+          <path d="M20,100 A80,80 0 0,1 180,100" fill="none" stroke="rgba(234,243,242,0.12)" stroke-width="14" stroke-linecap="round"/>
+          <path class="gauge-arc-fg" d="M20,100 A80,80 0 0,1 180,100" fill="none" stroke="#0A6E7D" stroke-width="14" stroke-linecap="round"
+                stroke-dasharray="251.2" stroke-dashoffset="251.2"/>
+        </svg>
+        <div class="gauge-score"><b>0</b><span>출조 적합도 점수</span></div>
+      </div>
+      <div style="text-align:center;">
+        <span class="gauge-badge">판정 중</span>
+      </div>
+      <div class="gauge-meta">
+        <div><b>0.0 m</b><span>파고</span></div>
+        <div><b>17.7℃</b><span>수온 · 물때</span></div>
+        <div><b>보통</b><span>신뢰도</span></div>
+      </div>
+      <div class="gauge-foot">
+        <span>REGION · 남해동부</span>
+        <span>RULE ENGINE v1</span>
+      </div>
+    </div>
+  </div>
+  <svg class="wave-cut" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,40 L1440,100 L0,100 Z" fill="#0A2431"/>
+  </svg>
+</header>
+
+<!-- ================= 파편화된 데이터 티커 ================= -->
+<div class="ticker-strip" style="position:relative;" aria-hidden="true">
+  <div class="ticker-track">
+    <span>기상청 API허브 <b>중기 해상예보</b></span>
+    <span>해양조사원(KHOA) <b>조위·유속 관측</b></span>
+    <span>공공데이터포털 <b>바다낚시지수</b></span>
+    <span>SNS <b>조황 후기</b> — 출처 미검증</span>
+    <span>선박운항지수 <b>임계치 데이터</b></span>
+    <span>기상특보 · <b>출입통제 정보</b></span>
+    <span>기상청 API허브 <b>중기 해상예보</b></span>
+    <span>해양조사원(KHOA) <b>조위·유속 관측</b></span>
+    <span>공공데이터포털 <b>바다낚시지수</b></span>
+    <span>SNS <b>조황 후기</b> — 출처 미검증</span>
+    <span>선박운항지수 <b>임계치 데이터</b></span>
+    <span>기상특보 · <b>출입통제 정보</b></span>
+  </div>
+  <svg class="wave-cut" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true" style="height:40px;">
+    <path d="M0,60 C240,10 480,100 720,60 C960,20 1200,90 1440,60 L1440,100 L0,100 Z" fill="#F7FDFF"/>
+  </svg>
+</div>
+
+<!-- ================= PROBLEM ================= -->
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Problem</div>
+      <h2>낚시인은 정보가 아니라<br>결정을 원합니다.</h2>
+      <p>기관별 데이터와 주관적인 조황 후기를 비교해도, 결국 "오늘 이 포인트에 가도 되는가"는 스스로 판단해야 합니다.</p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <span class="num">FRAGMENTED</span>
+        <h3>파편화된 정보</h3>
+        <p>기상청·KHOA·공공데이터포털을 일일이 비교해야 오늘의 조건을 겨우 그려볼 수 있습니다.</p>
+      </div>
+      <div class="problem-card reveal">
+        <span class="num">UNVERIFIED</span>
+        <h3>검증하기 어려운 조황</h3>
+        <p>시점과 출처가 불분명한 후기와 과장된 정보가 뒤섞여, 어디까지 믿어야 할지 알 수 없습니다.</p>
+      </div>
+      <div class="problem-card reveal">
+        <span class="num">BLIND SPOT</span>
+        <h3>안전 판단의 사각지대</h3>
+        <p>파고·풍속·출입통제를 따로 보면, 겹쳐졌을 때 커지는 위험을 놓칠 수 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="fact-strip reveal">
+      <div class="fact">
+        <b>3,092건</b>
+        <span>2023년 해양사고 발생 건수 (전년 대비 8%↑)</span>
+      </div>
+      <div class="fact">
+        <b>55명</b>
+        <span>같은 기간 해양 안전사고 사망자 수</span>
+      </div>
+      <div class="fact" style="flex:1.4;">
+        <b>여수 갯바위 익사사고</b>
+        <span>구명조끼 미작동, 위험도·장비·구조 접근성의 사전 종합판단 부재로 피해 확대</span>
+        <div class="source">출처: 경찰연합신문, 2026년 7월 2일</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CORE FEATURES ================= -->
+<section class="section" style="background:var(--foam-100);" id="features">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Core Features</div>
+      <h2>출조 전 10초,<br>필요한 답만 확인하세요.</h2>
+      <p>숫자를 나열하지 않고 포인트별 판단, 이유, 행동지침을 한 화면에 제공합니다.</p>
+    </div>
+
+    <div class="feature-layout">
+      <img class="feature-shot reveal" src="assets/features.png" alt="오늘의낚시 핵심 기능 4가지를 보여주는 실제 서비스 화면">
+
+      <div class="feature-list">
+        <div class="feature-item reveal">
+          <div class="feature-icon">📍</div>
+          <div><h3>포인트별 3일 출조점수</h3><p>지역·포인트를 검색하고 오늘부터 3일간의 적합도를 한눈에 비교합니다.</p></div>
+        </div>
+        <div class="feature-item reveal">
+          <div class="feature-icon">🧾</div>
+          <div><h3>점수 산출 근거 공개</h3><p>풍속, 파고, 물때 등 점수 변동 요인과 원천 데이터 출처를 함께 표시합니다.</p></div>
+        </div>
+        <div class="feature-item reveal">
+          <div class="feature-icon">🛟</div>
+          <div><h3>안전 규칙 최우선</h3><p>기상특보와 출입통제는 AI보다 우선합니다. 위험 기준을 넘으면 자동으로 비추천합니다.</p></div>
+        </div>
+        <div class="feature-item reveal">
+          <div class="feature-icon">🔔</div>
+          <div><h3>관심지역 출조 알림</h3><p>저장한 지역의 출조 적합도가 좋아지거나 악화될 때 먼저 알려드립니다.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST ARCHITECTURE ================= -->
+<section class="dark-section section" id="trust">
+  <div class="container on-dark">
+    <div class="section-head reveal">
+      <div class="eyebrow">Trust Architecture</div>
+      <h2>지어내지 않는 AI를 위한<br>3단 구조</h2>
+      <p>AI는 질문을 이해하고, 지식지도와 규칙 엔진이 판정합니다. 같은 조건이면 언제나 같은 답이 나옵니다.</p>
+    </div>
+
+    <div class="trust-layout">
+      <div class="trust-steps">
+        <div class="trust-step reveal">
+          <div class="trust-num">1</div>
+          <div>
+            <h3>듣는 역할 · AI</h3>
+            <p>"주말에 감성돔, 바람 약한 곳" 같은 자연어 요청과 조황 후기를 이해합니다. 판정에는 일절 관여하지 않습니다.</p>
+          </div>
+        </div>
+        <div class="trust-step reveal">
+          <div class="trust-num">2</div>
+          <div>
+            <h3>아는 역할 · 낚시지식 지도</h3>
+            <p>어종·포인트·물때·채비·위험요소의 관계를 검증 가능한 지식으로 구조화합니다.</p>
+          </div>
+        </div>
+        <div class="trust-step reveal">
+          <div class="trust-num">3</div>
+          <div>
+            <h3>판정 역할 · 규칙 엔진</h3>
+            <p>동일 조건에는 동일 결과를 내고, 적용 규칙과 근거를 추적해 보여줍니다. (Graph RAG)</p>
+          </div>
+        </div>
+        <div class="trust-warn reveal">⚠️ 조황이 아무리 좋아도 기상특보·출입통제·안전 임계치를 넘으면 해당 포인트를 차단합니다.</div>
+      </div>
+      <img class="trust-visual reveal" src="assets/trust.png" alt="듣는 역할 AI, 아는 역할 낚시지식 지도, 판정 역할 규칙 엔진의 3단 구조 설명 화면">
+    </div>
+  </div>
+  <svg class="wave-cut" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,40 L1440,100 L0,100 Z" fill="#F7FDFF"/>
+  </svg>
+</section>
+
+<!-- ================= MOBILE EXPERIENCE ================= -->
+<section class="section" id="mobile">
+  <div class="container">
+    <div class="mobile-layout">
+      <div class="phone-stack reveal">
+        <img class="phone-frame back" src="assets/mobile-exp.png" alt="감천항 관측 카드 — 탭 메뉴가 보이는 모바일 화면">
+        <img class="phone-frame" src="assets/hero-gamcheon.png" alt="감천항 출조판단 82점 추천 결과가 표시된 모바일 화면">
+      </div>
+      <div class="reveal">
+        <div class="eyebrow">Mobile Experience</div>
+        <h2 style="margin:16px 0 16px;font-size:clamp(26px,3.4vw,40px);">지도, 관측값, 채비까지<br>한 장으로 끝냅니다.</h2>
+        <p style="color:var(--ink-600);font-size:16.5px;">복잡한 해양 관측 데이터를 모바일에서 바로 이해할 수 있는 카드로 제공합니다. 풍향·파고 같은 원시 수치부터 캐스팅 방법까지, 스크롤 없이 한 화면에서 확인하세요.</p>
+        <div class="tab-pills">
+          <span class="tab-pill">풍속·파고</span>
+          <span class="tab-pill">수온·염분</span>
+          <span class="tab-pill">조류·물때</span>
+          <span class="tab-pill">채비 추천</span>
+          <span class="tab-pill">안전 안내</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEMO PREVIEW ================= -->
+<section class="section" style="background:var(--foam-100);" id="demo-preview">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Live Briefing</div>
+      <h2>실제 판정 카드를 미리 보세요.</h2>
+      <p>부산 갯바위부터 전국 9개 해역까지, 오늘의낚시가 매일 자동 발행하는 브리핑 카드입니다.</p>
+    </div>
+    <div class="demo-grid">
+      <a class="demo-card reveal" href="service.html">
+        <figure><img src="assets/card-jindo-score.png" alt="진도 감성돔 출조판정 카드 — 78점 조건부 추천"></figure>
+        <div class="demo-cap"><span class="tag">출조 판정</span><h3>진도 감성돔 · 78점 조건부 추천</h3><p>오전·오후 시간대별 점수와 캐스팅 방향까지 제시합니다.</p></div>
+      </a>
+      <a class="demo-card reveal" href="service.html">
+        <figure><img src="assets/card-namae-safety.png" alt="남애항 갯바위 감성돔낚시 안전 판정 주의 카드"></figure>
+        <div class="demo-cap"><span class="tag">안전 판정</span><h3>남애항 · 안전 판정 주의</h3><p>낚시지수가 좋아도 안전 신뢰도에 따라 경고를 우선 표시합니다.</p></div>
+      </a>
+      <a class="demo-card reveal" href="service.html">
+        <figure><img src="assets/card-sealink.png" alt="SeaLink 통합 해양 액티비티 브리핑 지식그래프"></figure>
+        <div class="demo-cap"><span class="tag">지식 그래프</span><h3>4개 서비스 연계 브리핑</h3><p>바다낚시지수·해상예보·선박운항지수·조위정보를 하나의 그래프로 연결합니다.</p></div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="service.html" class="btn btn-ghost" style="border-color:rgba(11,33,49,.18);">판정 카드 전체 보기</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROADMAP ================= -->
+<section class="dark-section section" id="roadmap">
+  <div class="container on-dark">
+    <div class="section-head reveal">
+      <div class="eyebrow">Roadmap</div>
+      <h2>부산 100개 포인트부터<br>전국 9개 해역까지</h2>
+      <p>연차별로 검증 지역을 넓히며, 국내에서 검증한 판정 엔진을 해외로 이식합니다.</p>
+    </div>
+
+    <div class="split-block">
+      <div class="roadmap-line">
+        <div class="roadmap-row reveal">
+          <span class="roadmap-year">1년차</span>
+          <h3>부산 해역 우선 검증</h3>
+          <p>기장·영도·송도·다대포·가덕도 100개 포인트의 정확도와 유료전환을 검증합니다.</p>
+        </div>
+        <div class="roadmap-row reveal">
+          <span class="roadmap-year">2년차</span>
+          <h3>울산·경남 확장</h3>
+          <p>AI 큐레이션 커머스와 예약 연계를 시작합니다.</p>
+        </div>
+        <div class="roadmap-row reveal">
+          <span class="roadmap-year">3년차</span>
+          <h3>전국 9개 해역</h3>
+          <p>선사·낚시점 SaaS와 지자체 안전 데이터 사업으로 확장합니다.</p>
+        </div>
+        <div class="roadmap-row reveal">
+          <span class="roadmap-year">4년차+</span>
+          <h3>글로벌 엔진 이식</h3>
+          <p>국내에서 검증한 판정 엔진을 해외 낚시 앱 생태계에 적용합니다.</p>
+        </div>
+      </div>
+      <img class="trust-visual reveal" src="assets/roadmap-cta.png" alt="부산 100개 포인트부터 전국 9개 해역까지 로드맵 원본 화면">
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="dark-section" id="cta">
+  <div class="final-cta">
+    <div class="eyebrow" style="margin-bottom:18px;">Ready to Fish?</div>
+    <h2>감이 아닌 데이터로<br>다음 출조를 결정하세요.</h2>
+    <p>오늘의낚시 베타 오픈과 부산 포인트 업데이트를 가장 먼저 받아보세요.</p>
+    <div class="btn-group">
+      <a href="https://www.instagram.com/todaysfishing_official" class="btn btn-primary">베타 신청하기</a>
+      <a href="service.html" class="btn btn-ghost">서비스 화면 둘러보기</a>
+    </div>
+    <div class="handle"><a href="https://www.instagram.com/todaysfishing_official">@todaysfishing_official</a></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="nav-logo"><span class="dot"></span>오늘의낚시</div>
+    <ul class="footer-links">
+      <li><a href="index.html">메인</a></li>
+      <li><a href="service.html">서비스 화면</a></li>
+      <li><a href="business.html">사업 소개</a></li>
+    </ul>
+    <small>© 2026 오늘의낚시. 공공데이터 기반 AI 출조판단 에이전트.</small>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+
+<script>
+(() => {
+  const burger = document.querySelector('.nav-burger');
+  const links = document.querySelector('.nav-links');
+  if (!burger || !links) return;
+
+  burger.setAttribute('aria-expanded', 'false');
+  burger.addEventListener('click', () => {
+    const open = links.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+  });
+
+  links.addEventListener('click', (event) => {
+    if (event.target.closest('a')) {
+      links.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', '메뉴 열기');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
