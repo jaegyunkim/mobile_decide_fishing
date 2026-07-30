@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서비스 화면 — 오늘의낚시</title>
+<meta name="description" content="오늘의낚시가 매일 자동 발행하는 실제 출조 판정 브리핑 카드 모음.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><span class="dot"></span>오늘의낚시</a>
+    <ul class="nav-links">
+      <li><a href="index.html">메인</a></li>
+      <li><a href="service.html" class="active">서비스</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="dark-section page-intro">
+  <div class="container on-dark">
+    <div class="crumb"><a href="index.html">메인</a> / 서비스 화면</div>
+    <div class="eyebrow">Live Briefing Cards</div>
+    <h1>매일 자동 발행되는<br>출조 판정 브리핑 카드</h1>
+    <p>공공데이터 수집·분석부터 인포그래픽 생성, SNS 게시까지 사람 손을 거치지 않습니다. 아래는 실제로 발행된 판정 카드 원본입니다. 카드를 눌러 크게 볼 수 있습니다.</p>
+  </div>
+  <svg class="wave-cut" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,40 L1440,100 L0,100 Z" fill="#F7FDFF"/>
+  </svg>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">01 · 출조 판정</div>
+      <h2>포인트별 즉답형 판정</h2>
+      <p>낚시지수·안전 신뢰도·물때를 종합해 추천 / 조건부 추천 / 주의 / 비추천으로 번역합니다.</p>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-card reveal" data-lightbox="assets/hero-gamcheon.png" data-alt="감천항 82점 추천 랜딩 예시">
+        <figure><img src="assets/hero-gamcheon.png" alt="감천항 연안 캐스팅 82점 추천 카드"></figure>
+        <div class="demo-cap"><span class="tag">2026.07.25 · 감천항</span><h3>82점 · 추천</h3><p>연안 캐스팅 · 가벼운 루어 · 빠른 리트리브를 함께 안내합니다.</p></div>
+      </div>
+      <div class="demo-card reveal" data-lightbox="assets/card-jindo-score.png" data-alt="진도 감성돔 출조판정 78점 조건부 추천">
+        <figure><img src="assets/card-jindo-score.png" alt="진도 하조도 감성돔 78점 조건부 추천 카드"></figure>
+        <div class="demo-cap"><span class="tag">2026.07.30 · 진도 하조도</span><h3>78점 · 조건부 추천</h3><p>오전 78점 / 오후 68점, 배점 근거와 캐스팅 방향(250˚)까지 제시합니다.</p></div>
+      </div>
+      <div class="demo-card reveal" data-lightbox="assets/card-namae-safety.png" data-alt="남애항 안전 판정 주의 카드">
+        <figure><img src="assets/card-namae-safety.png" alt="양양 남애항 갯바위 안전 판정 주의 카드"></figure>
+        <div class="demo-cap"><span class="tag">2026.08.05 · 양양 남애항</span><h3>65점 · 안전 판정 주의</h3><p>낚시지수는 보통이어도 안전 신뢰도가 낮으면 주의 표시를 우선합니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--foam-100);">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">02 · 관측 데이터</div>
+      <h2>권역별 해양 관측 카드</h2>
+      <p>수온·염분·유향·유속 등 원시 관측값을 지도와 함께 시각화해 매 시간 갱신합니다.</p>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-card reveal" data-lightbox="assets/card-namhae-obs.png" data-alt="남해동부 해양 관측 카드">
+        <figure><img src="assets/card-namhae-obs.png" alt="남해동부 권역 해양 관측 카드 — 풍향 풍속 파고 수온 염분"></figure>
+        <div class="demo-cap"><span class="tag">남해동부</span><h3>해양 관측 카드</h3><p>파고 0.69m, 수온 25.2℃ 등 9개 지표를 카드 한 장에 담습니다.</p></div>
+      </div>
+      <div class="demo-card reveal" data-lightbox="assets/card-gyema-port.png" data-alt="계마항 갯바위 예측 카드">
+        <figure><img src="assets/card-gyema-port.png" alt="계마항 갯바위 감성돔 낚시지수 좋음 카드"></figure>
+        <div class="demo-cap"><span class="tag">계마항 · 갯바위</span><h3>바다낚시지수 좋음</h3><p>대조기·수온·채비(B~3B 저부력)까지 한 화면에서 확인합니다.</p></div>
+      </div>
+      <div class="demo-card reveal" data-lightbox="assets/card-anheung-tide.png" data-alt="안흥 조위 정보 카드">
+        <figure><img src="assets/card-anheung-tide.png" alt="안흥 조위관측소 실측·예측 조위 카드"></figure>
+        <div class="demo-cap"><span class="tag">안흥 · KHOA</span><h3>조위(물때) 정보</h3><p>시간대별 실측·예측 조위를 비교해 물때 중심 계획을 돕습니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">03 · 항행 · 예보 · 통합 브리핑</div>
+      <h2>선박 운항부터 지식 그래프까지</h2>
+      <p>낚시뿐 아니라 도선·선상낚시 운항 가능성, 전국 해상 예보, 4개 서비스를 연결한 지식 그래프까지 확장합니다.</p>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-card reveal" data-lightbox="assets/card-donghae-ship.png" data-alt="동해남부 선박운항지수 카드">
+        <figure><img src="assets/card-donghae-ship.png" alt="동해남부 시간대별 선박운항지수 좋음 카드"></figure>
+        <div class="demo-cap"><span class="tag">동해남부</span><h3>선박운항지수</h3><p>새벽·오전·오후·밤 4개 시간대의 풍속·파고·유속을 지수화합니다.</p></div>
+      </div>
+      <div class="demo-card reveal" data-lightbox="assets/card-nationwide-weather.png" data-alt="전국 해상 날씨 예보 카드">
+        <figure><img src="assets/card-nationwide-weather.png" alt="전국 8개 권역 해상 날씨 예보 카드"></figure>
+        <div class="demo-cap"><span class="tag">전국 8개 권역</span><h3>해상 날씨 예보</h3><p>기상청 API허브 중기 해상예보를 파싱해 권역별 파고·날씨를 발행합니다.</p></div>
+      </div>
+      <div class="demo-card reveal" data-lightbox="assets/card-sealink.png" data-alt="SeaLink 통합 해양 액티비티 브리핑 지식그래프 카드">
+        <figure><img src="assets/card-sealink.png" alt="거제도 SeaLink 통합 해양 액티비티 브리핑 카드"></figure>
+        <div class="demo-cap"><span class="tag">거제도 · 지식그래프</span><h3>SeaLink 통합 브리핑</h3><p>바다낚시지수·해상예보·선박운항지수·조위정보 4개 서비스, 27개 관계를 연결합니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section section">
+  <div class="container on-dark">
+    <div class="section-head reveal">
+      <div class="eyebrow">Behind the Cards</div>
+      <h2>사람이 그리지 않습니다.<br>규칙 엔진이 계산합니다.</h2>
+      <p>모든 카드의 숫자는 공공데이터 원천에서 자동 수집·적재된 값이며, 판정 문구(추천/주의/비추천)는 검증된 규칙과 안전 임계치로만 계산됩니다. AI는 질문과 후기를 이해하는 역할만 맡고, 점수 산정에는 관여하지 않습니다.</p>
+    </div>
+    <div class="split-block">
+      <table class="info-table">
+        <tr><td>DATA</td><td>기상청 API허브 · 해양조사원(KHOA) · 공공데이터포털 바다낚시지수</td></tr>
+        <tr><td>ENGINE</td><td>로컬 Ollama 기반 권역별 출조 RAG — 비용 절감·데이터 보호·환각 차단</td></tr>
+        <tr><td>SAFETY</td><td>기상특보·출입통제 등 안전 규칙은 AI가 덮어쓸 수 없는 1순위 규칙</td></tr>
+        <tr><td>PUBLISH</td><td>수집 → 분석 → 인포그래픽 생성 → 인스타그램 API 자동 게시</td></tr>
+      </table>
+      <a href="business.html" class="btn btn-ghost" style="align-self:start;">기술 구조 자세히 보기 →</a>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section">
+  <div class="final-cta">
+    <h2>다음 판정 카드는<br>당신의 포인트일 수 있습니다.</h2>
+    <p>관심 지역을 등록하면 출조 적합도가 바뀔 때 가장 먼저 알려드립니다.</p>
+    <div class="btn-group">
+      <a href="index.html#cta" class="btn btn-primary">베타 신청하기</a>
+      <a href="business.html" class="btn btn-ghost">사업 소개 보기</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="nav-logo"><span class="dot"></span>오늘의낚시</div>
+    <ul class="footer-links">
+      <li><a href="index.html">메인</a></li>
+      <li><a href="service.html">서비스 화면</a></li>
+      <li><a href="business.html">사업 소개</a></li>
+    </ul>
+    <small>© 2026 오늘의낚시. 공공데이터 기반 AI 출조판단 에이전트.</small>
+  </div>
+</footer>
+
+<div class="lightbox">
+  <button class="lightbox-close">닫기 ✕</button>
+  <img src="" alt="">
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

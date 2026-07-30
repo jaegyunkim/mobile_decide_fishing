@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사업 소개 — 오늘의낚시</title>
+<meta name="description" content="오늘의낚시 사업계획 — 문제 인식, 실현가능성, 성장전략.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><span class="dot"></span>오늘의낚시</a>
+    <ul class="nav-links">
+      <li><a href="index.html">메인</a></li>
+      <li><a href="service.html">서비스</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="dark-section page-intro">
+  <div class="container on-dark">
+    <div class="crumb"><a href="index.html">메인</a> / 사업 소개</div>
+    <div class="eyebrow">Business Plan</div>
+    <h1>헛걸음과 사고를 줄이는<br>출조판단 AI 에이전트</h1>
+    <p>공공데이터를 자동 수집·분석해 포인트별 출조 적합도를 즉답과 채점 근거로 알려주는 출조 결정 서비스입니다. 매주 출조를 계획하는 20~50대 중급 앵글러를 핵심 타깃으로 합니다.</p>
+  </div>
+  <svg class="wave-cut" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,40 L1440,100 L0,100 Z" fill="#F7FDFF"/>
+  </svg>
+</header>
+
+<!-- Q1. 문제 인식 -->
+<section class="section" id="q1">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Q1 · Problem</div>
+      <h2>왜 지금, 출조판단 AI인가</h2>
+      <p>정보는 이미 충분합니다. 부족한 것은 그 정보를 "가도 되는가"라는 결정으로 바꿔주는 마지막 한 걸음입니다.</p>
+    </div>
+
+    <div class="stat-cards reveal" style="margin-bottom:52px;">
+      <div class="stat-card"><b>1,000만</b><span>국내 낚시인구 시대, 정보 분산에 따른 판단 곤란</span></div>
+      <div class="stat-card"><b>3,092건</b><span>2023년 해양사고 발생 (전년 대비 8%↑)</span></div>
+      <div class="stat-card"><b>55명</b><span>같은 기간 해양 안전사고 사망자 수</span></div>
+      <div class="stat-card"><b>100만</b><span>전국 바다낚시인 중 부산·경남 권역 우선 공략</span></div>
+    </div>
+
+    <div class="split-block">
+      <div class="reveal">
+        <h3 style="font-size:19px;margin-bottom:14px;">외부적 배경 · 시장과 환경</h3>
+        <p style="color:var(--ink-600);margin-bottom:10px;">출조 판단 데이터가 기상청·해양조사원·공공데이터포털 등에 파편화되어 있어 낚시인이 직접 비교해야 합니다. SNS 조황은 주관이 섞여 미검증 상태이고, 범용 AI는 그럴듯한 환각 오답을 내놓기 쉽습니다.</p>
+        <p style="color:var(--ink-600);">기존 앱들은 숫자만 제공할 뿐, "출조 가능 여부"라는 결정으로 이어주지 못합니다.</p>
+      </div>
+      <div class="reveal">
+        <h3 style="font-size:19px;margin-bottom:14px;">내부적 배경 · 창업자 동기</h3>
+        <p style="color:var(--ink-600);margin-bottom:10px;">지인 낚시인들이 여러 데이터를 비교하고도 결국 감에 의존하다 출조 실패와 위험을 반복해서 겪는 것을 지켜봤습니다.</p>
+        <p style="color:var(--ink-600);">창업자가 직접 수동 수집 → 무인 스케줄러 → PostgreSQL 적재로 이어지는 데이터 통합 자동화를 구축 완료해, 문제 당사자이자 기술 보유자로서 실행 가능성을 검증했습니다.</p>
+      </div>
+    </div>
+
+    <img class="trust-visual reveal" style="margin-top:44px;" src="assets/problem.png" alt="낚시인은 정보가 아니라 결정을 원한다는 문제 인식을 설명하는 원본 슬라이드">
+  </div>
+</section>
+
+<!-- Q2. 실현가능성 -->
+<section class="dark-section section" id="q2">
+  <div class="container on-dark">
+    <div class="section-head reveal">
+      <div class="eyebrow">Q2 · Solution</div>
+      <h2>지어내지 않는 AI를 만드는<br>3단 구조</h2>
+      <p>역할을 듣기·알기·판정 셋으로 분리해, AI의 그럴듯한 거짓 답변(환각)을 구조적으로 차단합니다.</p>
+    </div>
+
+    <div class="split-block" style="margin-bottom:56px;">
+      <div class="trust-steps">
+        <div class="trust-step reveal">
+          <div class="trust-num">1</div>
+          <div><h3>듣는 역할</h3><p>AI(신경망)는 일상 언어 질문과 조황 후기·사진의 이해·번역만 담당합니다.</p></div>
+        </div>
+        <div class="trust-step reveal">
+          <div class="trust-num">2</div>
+          <div><h3>아는 역할</h3><p>포인트별 수심·어종·위험요소, 채비, 물때 등 베테랑 경험 지식을 검증 가능한 지식 DB로 정리합니다.</p></div>
+        </div>
+        <div class="trust-step reveal">
+          <div class="trust-num">3</div>
+          <div><h3>판정 역할</h3><p>출조 판정은 검증된 규칙·기상 한계치로 계산합니다. 같은 조건이면 같은 답, 근거·출처를 100% 추적합니다 (Graph RAG).</p></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3 style="font-size:19px;margin-bottom:14px;color:var(--text-onLight);">개발 현황</h3>
+        <table class="info-table">
+          <tr><td>완료</td><td>코랩 수동 수집 → 자동화 스케줄러 체계 전환</td></tr>
+          <tr><td>완료</td><td>전용 머신·내부망 구성, 공공데이터 PostgreSQL 적재 완성</td></tr>
+          <tr><td>완료</td><td>로컬 Ollama 기반 권역별 출조 RAG — 비용 절감·데이터 보호·환각 차단</td></tr>
+          <tr><td>진행</td><td>생성AI API → 소셜 퍼블리싱 완전 자동화 콘텐츠 팩토리 구축</td></tr>
+          <tr><td>진행</td><td>낚시지식 온톨로지 기반 출조판정 엔진 탑재</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h3 style="font-size:19px;margin-bottom:18px;color:var(--text-onLight);">운영 프로시저 · 5개 자동화 파이프라인</h3>
+      <div class="pipeline-steps">
+        <div class="pipeline-step"><span class="tick">01</span><span>해상관측 자동화</span></div>
+        <div class="pipeline-step"><span class="tick">02</span><span>조위관측 수집·적재</span></div>
+        <div class="pipeline-step"><span class="tick">03</span><span>해상예보 자동화</span></div>
+        <div class="pipeline-step"><span class="tick">04</span><span>선박운항지수 자동화</span></div>
+        <div class="pipeline-step"><span class="tick">05</span><span>바다낚시지수 자동화</span></div>
+      </div>
+    </div>
+  </div>
+  <svg class="wave-cut" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,40 L1440,100 L0,100 Z" fill="#F7FDFF"/>
+  </svg>
+</section>
+
+<!-- Q3. 성장전략 -->
+<section class="section" id="q3">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Q3 · Scale-up</div>
+      <h2>초기 고객에서<br>데이터 플라이휠까지</h2>
+      <p>부산·경남 중급 바다낚시인을 초기 고객으로, 콘텐츠 자동 발행이 만드는 데이터가 다시 서비스 품질을 높이는 구조를 지향합니다.</p>
+    </div>
+
+    <div class="split-block" style="margin-bottom:56px;">
+      <div class="reveal">
+        <h3 style="font-size:19px;margin-bottom:14px;">초기 고객 · 부산·경남 중급 앵글러</h3>
+        <table class="info-table" style="--tblc:var(--ink-900);">
+          <tr><td style="color:var(--sun-600);">정의</td><td style="color:var(--ink-600);">부산·경남에서 월 2회 이상 바다낚시, 출조 취소·포인트 실패 비용이 큰 20~50대</td></tr>
+          <tr><td style="color:var(--sun-600);">규모</td><td style="color:var(--ink-600);">전국 바다낚시인 약 100만 명 중 부산·경남 권역 우선 공략</td></tr>
+          <tr><td style="color:var(--sun-600);">특성</td><td style="color:var(--ink-600);">포인트·채비에 대한 근거 있는 답을 요구, 채널 테스트에서 낚시 사용자 유입률 월등히 높음</td></tr>
+        </table>
+      </div>
+      <div class="reveal">
+        <h3 style="font-size:19px;margin-bottom:14px;">발행 콘텐츠 4종</h3>
+        <div class="pipeline-steps">
+          <div class="pipeline-step" style="background:#fff;border:1px solid rgba(11,33,49,.08);"><span class="tick">①</span><span>바다낚시지수 예측 — 당일 출조 적합도 인포그래픽 매일 자동 발행</span></div>
+          <div class="pipeline-step" style="background:#fff;border:1px solid rgba(11,33,49,.08);"><span class="tick">②</span><span>선박운항지수 예측 — 선상낚시·도선 운항 가능성 사전 안내</span></div>
+          <div class="pipeline-step" style="background:#fff;border:1px solid rgba(11,33,49,.08);"><span class="tick">③</span><span>조위(물때) 예측 — 만조·간조 시각을 포인트 지도와 함께 시각화</span></div>
+          <div class="pipeline-step" style="background:#fff;border:1px solid rgba(11,33,49,.08);"><span class="tick">④</span><span>해상날씨 예보 — 핵심 수치와 낚시전략 코멘트 결합</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fact-strip reveal">
+      <div class="fact">
+        <b>62,142</b>
+        <span>최근 30일 인스타그램 콘텐츠 조회수</span>
+      </div>
+      <div class="fact">
+        <b>244.4%</b>
+        <span>모두의창업 진행 한 달간 조회수 증가 (1.8만 → 6.2만)</span>
+      </div>
+      <div class="fact">
+        <b>26,837</b>
+        <span>도달한 계정 수 — 릴스·게시물·스토리 채널 합산</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section">
+  <div class="final-cta">
+    <h2>같은 조건, 같은 답.<br>근거로 말하는 출조 판정.</h2>
+    <p>부산 100개 포인트 검증을 시작으로, 감이 아닌 데이터로 확장합니다.</p>
+    <div class="btn-group">
+      <a href="index.html#cta" class="btn btn-primary">베타 신청하기</a>
+      <a href="service.html" class="btn btn-ghost">서비스 화면 보기</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="nav-logo"><span class="dot"></span>오늘의낚시</div>
+    <ul class="footer-links">
+      <li><a href="index.html">메인</a></li>
+      <li><a href="service.html">서비스 화면</a></li>
+      <li><a href="business.html">사업 소개</a></li>
+    </ul>
+    <small>© 2026 오늘의낚시. 공공데이터 기반 AI 출조판단 에이전트.</small>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
